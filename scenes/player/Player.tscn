@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bd8wqcdp02bo5"]
+
+[ext_resource type="PackedScene" uid="uid://kgwjwetv8pf" path="res://assets/models/knight.blend" id="1_knight"]
+[ext_resource type="Script" uid="uid://b6a3764drupik" path="res://scripts/player/PlayerController.gd" id="2_controller"]
+[ext_resource type="Script" uid="uid://bebmitd18s04i" path="res://scripts/player/CameraController.gd" id="3_camera"]
+
+[sub_resource type="CapsuleShape3D" id="1_capsule"]
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=1427111160]
+script = ExtResource("2_controller")
+
+[node name="KnightModel" parent="." unique_id=371388761 instance=ExtResource("1_knight")]
+transform = Transform3D(0.34699997, 0, 1.2230873e-06, 0, 0.27899998, 0, -1.2409686e-06, 0, 0.342, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1012318442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("1_capsule")
+
+[node name="CameraController" type="Node3D" parent="." unique_id=646573902]
+script = ExtResource("3_camera")
+
+[node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=1125418618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
+current = true
