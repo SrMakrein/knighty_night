@@ -1,239 +1,384 @@
-# KnightyNight 3D Platformer Prototype
+# KnightyNight - Prototipo de Plataforma 3D
 
-A **fully functional 3D platformer** with character movement, camera system, animations, and physics.
+Un **prototipo de plataforma 3D completamente funcional** con movimiento de personaje, sistema de cámara, animaciones, coleccionables, menús interactivos y física realista.
 
-## 🚀 Quick Start
+**Versión:** Alpha 0.0.1  
+**Estado:** ✅ Completamente jugable
 
-1. **Open in Godot 4.6+**
-2. **Press F5** to play
-3. **Use WASD + Mouse/Controller to move and look**
-4. **Press Space to jump**
-5. **Shift to run**
+## 🚀 Inicio Rápido
 
-That's it! Everything is ready to play.
+1. **Abre el proyecto en Godot 4.6+**
+2. **Presiona F5** para jugar
+3. **Usa WASD + Ratón/Controlador para moverte y mirar**
+4. **Presiona Espacio para saltar**
+5. **Mayúscula para correr**
+6. **Esc para pausar**
 
----
-
-## 📖 Documentation
-
-- **[SETUP_GUIDE.md](docs/SETUP_GUIDE.md)** - Complete guide with features and customization
-- **[QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md)** - Quick lookup for developers
-- **[DEVELOPER_GUIDE.md](docs/DEVELOPER_GUIDE.md)** - Architecture and how to extend
-- **[IMPLEMENTATION_CHECKLIST.md](docs/IMPLEMENTATION_CHECKLIST.md)** - What's been built
+¡Eso es todo! Todo está configurado y listo para jugar.
 
 ---
 
-## 🎮 Controls
+## 📖 Documentación
 
-### Keyboard + Mouse
-- **WASD** - Move
-- **Space** - Jump
-- **Shift** - Run
-- **Mouse** - Look around
-- **Esc** - Unlock mouse
-
-### Xbox Controller
-- **Left Stick** - Move
-- **Right Stick** - Look
-- **A Button** - Jump
-- **LB/RB** - Run
+- **[IMPLEMENTED_FEATURES.md](docs/IMPLEMENTED_FEATURES.md)** - 📋 Lo que está implementado ahora mismo
 
 ---
 
-## ✨ What's Included
+## 🎮 Controles
 
-✅ **Player Controller**
-- Smooth movement with acceleration/friction
-- Camera-relative directional movement
-- Gravity and jumping
-- Ground detection
-- Walk/Run modes
+### Teclado + Ratón
+- **WASD** - Movimiento
+- **Espacio** - Saltar
+- **Mayúscula** - Correr
+- **Ratón** - Mirar alrededor
+- **Esc** - Menú de pausa
 
-✅ **Camera System**
-- Third-person follow camera
-- Mouse and gamepad control
-- Smooth interpolation
-- Configurable distance and height
-
-✅ **Animation System**
-- State-based animation blending
-- Idle, Walk, Run, Jump animations
-- Ready for your model's animations
-
-✅ **Input System**
-- Keyboard, Mouse, and Xbox Controller support
-- Fully configurable in project.godot
-
-✅ **Level**
-- Ground platform
-- Two jump platforms
-- Lighting with shadows
-- Player respawn on fall
+### Controlador Xbox
+- **Stick Izquierdo** - Movimiento
+- **Stick Derecho** - Mirar
+- **Botón A** - Saltar
+- **LB/RB** - Correr
 
 ---
 
-## 📁 Project Structure
+## ✨ Lo que está incluido
+
+✅ **Controlador del Jugador**
+- Movimiento suave con aceleración/fricción
+- Velocidad de caminata: 7.0 u/s
+- Velocidad de carrera: 11.0 u/s
+- Movimiento relativo a la cámara
+- Gravedad y salto realistas
+- Detección de suelo
+
+✅ **Sistema de Cámara**
+- Cámara en tercera persona
+- Control con ratón y gamepad
+- Distancia: 5.0 unidades
+- Altura: 1.8 unidades
+- Interpolación suave
+
+✅ **Sistema de Animación**
+- Máquina de estados (Idle, Walk, Run, Jump)
+- Transiciones suaves
+- Sincronización automática
+
+✅ **Menú Principal**
+- Interfaz elegante con animaciones
+- Botones interactivos
+- Hover effects
+
+✅ **Menú de Pausa**
+- Pausa del juego con Esc
+- Opciones durante la pausa
+- Reanudar o salir
+
+✅ **Sistema de Coleccionables**
+- Objetos para recoger en el nivel
+- Contador global en HUD
+- Gestor de coleccionables persistente
+
+✅ **HUD en Juego**
+- Contador de coleccionables
+- Interfaz limpia y legible
+
+✅ **Física y Entrada**
+- CharacterBody3D con gravedad
+- Teclado, ratón y controlador Xbox
+- Mapa de entrada completamente configurado
+
+✅ **Nivel**
+- Plataforma de tierra principal
+- Dos plataformas elevadas para saltar
+- Iluminación con sombras
+- Reaparición automática si caes
+
+---
+
+## 📁 Estructura del Proyecto
 
 ```
 knighty-night/
 ├── scripts/
 │   ├── player/
-│   │   ├── PlayerController.gd   ← Character movement
-│   │   ├── CameraController.gd   ← Camera follow
-│   │   └── AnimationController.gd ← Animation states
-│   └── managers/
-│       └── MainLevel.gd          ← Level manager
+│   │   ├── PlayerController.gd   ← Movimiento (7.0 / 11.0 u/s)
+│   │   ├── CameraController.gd   ← Cámara tercera persona
+│   │   └── AnimationController.gd ← Estados de animación
+│   ├── managers/
+│   │   └── MainLevel.gd          ← Gestor de nivel
+│   ├── autoload/
+│   │   └── CollectibleManager.gd ← Gestor global de coleccionables
+│   ├── objects/
+│   │   └── CollectibleController.gd ← Control de coleccionables
+│   └── ui/
+│       ├── MenuController.gd
+│       ├── PauseController.gd
+│       ├── HUDController.gd
+│       ├── OptionsController.gd
+│       └── OptionsMenuPausaController.gd
 ├── scenes/
 │   ├── player/
-│   │   └── Player.tscn           ← Player scene
-│   └── levels/
-│       └── main.tscn             ← Main level
+│   │   └── Player.tscn
+│   ├── levels/
+│   │   └── main.tscn
+│   ├── objects/
+│   │   └── Collectible.tscn
+│   └── ui/
+│       ├── Menu.tscn          ← Escena de inicio
+│       ├── PauseMenu.tscn
+│       ├── HUD.tscn
+│       ├── OptionsMenu.tscn
+│       └── OptionsMenuPausa.tscn
 ├── assets/
 │   └── models/
-│       ├── knight.blend          (your character)
+│       ├── knight.blend       (personaje principal)
 │       ├── shield.blend
 │       └── sword.blend
-├── docs/
-│   ├── SETUP_GUIDE.md
-│   ├── QUICK_REFERENCE.md
-│   ├── DEVELOPER_GUIDE.md
-│   └── IMPLEMENTATION_CHECKLIST.md
-└── project.godot                 (configured)
+└── docs/
+    ├── IMPLEMENTED_FEATURES.md  ← LO QUE ESTÁ HECHO
+    ├── SETUP_GUIDE.md
+    ├── QUICK_REFERENCE.md
+    ├── DEVELOPER_GUIDE.md
+    └── IMPLEMENTATION_CHECKLIST.md
 ```
 
 ---
 
-## ⚙️ Customization
+## ⚙️ Parámetros Principales
 
-### Adjust Movement Speed
-Open `scripts/player/PlayerController.gd`:
+### PlayerController
 ```gdscript
-@export var max_walk_speed: float = 5.0  # Change this
-@export var max_run_speed: float = 8.0   # And this
+max_walk_speed = 7.0         # Velocidad caminata
+max_run_speed = 11.0         # Velocidad carrera
+acceleration = 30.0          # Aceleración
+friction = 25.0              # Fricción
+gravity = 15.0               # Gravedad
+jump_force = 8.0             # Fuerza salto
 ```
 
-### Change Camera Distance
-Open `scripts/player/CameraController.gd`:
+### CameraController
 ```gdscript
-@export var distance: float = 3.0        # Increase for farther camera
-@export var height: float = 1.5          # Increase for higher camera
+distance = 5.0               # Distancia de cámara
+height = 1.8                 # Altura de cámara
+mouse_sensitivity = 0.1      # Sensibilidad ratón
+gamepad_sensitivity = 3.0    # Sensibilidad stick
+min_pitch = -60.0            # Ángulo mín vertical
+max_pitch = 60.0             # Ángulo máx vertical
 ```
 
-### Add More Platforms
-Open `scenes/levels/main.tscn` in the Scene editor and add new `StaticBody3D` nodes with mesh and collision shapes.
-
-See **SETUP_GUIDE.md** for detailed customization options.
+---
 
 ---
 
-## 🎯 Features
+## 🎯 Características
 
-- ✅ Smooth 3D character movement
-- ✅ Third-person camera with mouse/stick control
-- ✅ Jump and gravity physics
-- ✅ Ground detection
-- ✅ Animation blending (Idle/Walk/Run/Jump)
-- ✅ Keyboard + Xbox Controller support
-- ✅ Multiple platforms to explore
-- ✅ Clean, modular code
-- ✅ Fully documented
-- ✅ Ready to extend
-
----
-
-## 🔧 No Setup Required
-
-Everything is pre-configured:
-- ✅ Input map ready
-- ✅ Scripts attached
-- ✅ Scenes set up
-- ✅ Physics configured
-- ✅ Main scene set as startup scene
-
-**Just press Play!**
+- ✅ Movimiento 3D fluido con aceleración
+- ✅ Cámara en tercera persona (ratón + gamepad)
+- ✅ Física de salto y gravedad realista
+- ✅ Detección de suelo
+- ✅ Animaciones suaves (Idle/Walk/Run/Jump)
+- ✅ Soporte Teclado + Controlador Xbox
+- ✅ Menú principal con animaciones
+- ✅ Sistema de pausa funcional
+- ✅ Coleccionables con seguimiento
+- ✅ HUD con información
+- ✅ Múltiples plataformas
+- ✅ Código limpio y modular
+- ✅ Completamente documentado
+- ✅ Listo para expandir
 
 ---
 
-## 📚 Next Steps
+## 🔧 Sin Configuración Extra Requerida
 
-1. **Play the game** - Get a feel for the mechanics
-2. **Read SETUP_GUIDE.md** - Understand what's implemented
-3. **Experiment with QUICK_REFERENCE.md** - Tweak parameters
-4. **Extend using DEVELOPER_GUIDE.md** - Add new features
+Todo está preconfigurado:
+- ✅ Mapa de entrada completo
+- ✅ Scripts adjuntos en escenas
+- ✅ Escenas de UI listas
+- ✅ Física configurada
+- ✅ Menu.tscn como escena inicial
+- ✅ AutoLoad: CollectibleManager
 
-### Ideas to Build
-- Add enemies
-- Add collectibles
-- Add UI (health, score)
-- Add sound effects
-- Create more levels
-- Add combat system
-- Add power-ups
+**¡Solo presiona F5!**
 
 ---
 
-## 📋 Requirements Met
+## 📚 Próximos Pasos
 
-✅ Controllable 3D character (CharacterBody3D)
-✅ Movement, jump, gravity
-✅ Camera-relative movement
-✅ Third-person camera following
-✅ Smooth camera (no jitter)
-✅ Mouse + Stick camera control
-✅ Keyboard input (WASD + Space + Shift)
-✅ Xbox Controller input (left stick, right stick, A, LB/RB)
-✅ Animation system (Idle, Walk, Run, Jump)
-✅ Main scene with player and platforms
-✅ Lighting
-✅ Basic physics and collisions
-✅ Ground detection
-✅ Clean, modular GDScript code
-✅ Well-documented
-✅ No external plugins
-✅ Ready to play immediately
+1. **Juega el juego** - Explora las plataformas y coleccionables
+2. **Lee IMPLEMENTED_FEATURES.md** - Entiende qué está hecho
+3. **Experimenta con parámetros** - Ajusta velocidades y cámara
+4. **Extiende el proyecto** - Agrega enemigos, nuevos niveles, etc.
+
+### Ideas para Construir
+- Sistema de combate
+- Enemigos con IA
+- Más niveles
+- Efectos de sonido y música
+- Sistema de puntuación avanzado
+- Power-ups y bonificadores
+- Cinemáticas
+- Historia/Narrativa
 
 ---
 
-## 🐛 Troubleshooting
+## 📋 Requisitos Cumplidos
 
-**Character doesn't move?**
-- Check Input Map (Project Settings > Input Map)
-- Verify scripts are attached in scenes
-
-**Camera stuck?**
-- Increase `smoothing` in CameraController (higher = smoother)
-- Right-click to recapture mouse
-
-**Animations don't play?**
-- Check animation names in AnimationController.gd
-- Verify knight.blend has animations named correctly
-
-See **QUICK_REFERENCE.md** for more troubleshooting.
-
----
-
-## 📖 Documentation Files
-
-| File | Purpose |
-|------|---------|
-| **SETUP_GUIDE.md** | Full feature list, customization, troubleshooting |
-| **QUICK_REFERENCE.md** | Quick lookup, common tasks, testing checklist |
-| **DEVELOPER_GUIDE.md** | Architecture, extending features, physics tuning |
-| **IMPLEMENTATION_CHECKLIST.md** | What's been built, next steps, status |
+✅ Personaje 3D controlable (CharacterBody3D)
+✅ Movimiento con aceleración/fricción
+✅ Gravedad y salto realista
+✅ Movimiento relativo a cámara
+✅ Cámara tercera persona siguiendo
+✅ Cámara suave sin parpadeos
+✅ Control ratón + stick derecho
+✅ Entrada teclado (WASD + Espacio + Mayúscula)
+✅ Entrada Controlador Xbox (sticks + botones)
+✅ Sistema animación completo
+✅ Menú principal funcional
+✅ Menú de pausa
+✅ Nivel con plataformas
+✅ Iluminación y sombras
+✅ Sistema de coleccionables
+✅ HUD de información
+✅ Física y colisiones
+✅ Detección suelo
+✅ Código modular en GDScript
+✅ Bien documentado
+✅ Sin plugins externos
+✅ Inmediatamente jugable
 
 ---
 
-## 🎮 Press Play and Have Fun!
+## 🐛 Solución de Problemas
 
-Everything is set up and ready. Launch Godot, open this project, and press **F5**.
+**¿El menú no carga?**
+- Verifica que Menu.tscn está en scenes/ui/
+- Comprueba que project.godot tiene Menu.tscn como run/main_scene
 
-The prototype is immediately playable. No additional setup needed.
+**¿El personaje no se mueve?**
+- Verifica el Mapa de Entrada (Project Settings > Input Map)
+- Asegúrate de que los scripts están adjuntos en Player.tscn
 
-**Enjoy your 3D platformer!** 🚀
+**¿La cámara se comporta raro?**
+- Aumenta/reduce mouse_sensitivity en CameraController
+- Ajusta gamepad_sensitivity para controles
+- Verifica que el ratón está capturado
+
+**¿Las animaciones no se reproducen?**
+- Verifica que knight.blend tiene las animaciones: Idle, Walk, Run, Jump
+- Comprueba que AnimationController.gd está adjunto
 
 ---
 
-**Version:** 1.0  
-**Created:** April 8, 2026  
-**Godot Version:** 4.6+  
-**Status:** ✅ Ready for Play
+## 📖 Archivos de Documentación
+
+| Archivo | Contenido |
+|---------|-----------|
+| **IMPLEMENTED_FEATURES.md** | ✨ Todas las características implementadas actualmente |
+| **SETUP_GUIDE.md** | Guía de configuración y características |
+| **QUICK_REFERENCE.md** | Referencia rápida de tareas comunes |
+| **DEVELOPER_GUIDE.md** | Arquitectura, extensión y modificación |
+| **IMPLEMENTATION_CHECKLIST.md** | Verificación de requisitos |
+
+---
+
+## 🎮 ¡Presiona F5 y Diviértete!
+
+Todo está configurado y listo. Abre Godot, carga este proyecto y presiona **F5**.
+
+El juego es completamente jugable de inmediato. No se requiere configuración adicional.
+
+**¡Disfruta KnightyNight!** 🚀
+
+---
+
+**Versión:** Alpha 0.0.1  
+**Creado:** 9 de Abril de 2026  
+**Godot:** 4.6+  
+**Estado:** ✅ Completamente Funcional**¡Solo presiona Play!**
+
+---
+
+## 📚 Próximos Pasos
+
+1. **Juega el juego** - Siéntete cómodo con la mecánica
+2. **Lee SETUP_GUIDE.md** - Entiende qué está implementado
+3. **Experimenta con QUICK_REFERENCE.md** - Ajusta parámetros
+4. **Extiende usando DEVELOPER_GUIDE.md** - Agrega nuevas características
+
+### Ideas para Construir
+- Agrega enemigos
+- Agrega objetos coleccionables
+- Agrega UI (salud, puntuación)
+- Agrega efectos de sonido
+- Crea más niveles
+- Agrega sistema de combate
+- Agrega power-ups
+
+---
+
+## 📋 Requisitos Cumplidos
+
+✅ Personaje 3D controlable (CharacterBody3D)
+✅ Movimiento, salto, gravedad
+✅ Movimiento relativo a la cámara
+✅ Cámara en tercera persona siguiendo
+✅ Cámara suave (sin parpadeos)
+✅ Control de cámara con Ratón + Stick
+✅ Entrada de teclado (WASD + Espacio + Mayúscula)
+✅ Entrada de Controlador Xbox (stick izquierdo, stick derecho, A, LB/RB)
+✅ Sistema de animación (Inactivo, Caminar, Correr, Saltar)
+✅ Escena principal con jugador y plataformas
+✅ Iluminación
+✅ Física y colisiones básicas
+✅ Detección de suelo
+✅ Código limpio y modular en GDScript
+✅ Bien documentado
+✅ Sin plugins externos
+✅ Listo para jugar inmediatamente
+
+---
+
+## 🐛 Solución de Problemas
+
+**¿El personaje no se mueve?**
+- Verifica el Mapa de Entrada (Project Settings > Input Map)
+- Verifica que los scripts están adjuntos en las escenas
+
+**¿Cámara atascada?**
+- Aumenta `smoothing` en CameraController (mayor = más suave)
+- Haz clic derecho para recapturar el ratón
+
+**¿Las animaciones no se reproducen?**
+- Verifica los nombres de las animaciones en AnimationController.gd
+- Verifica que knight.blend tiene las animaciones con nombres correctos
+
+Consulta **QUICK_REFERENCE.md** para más solución de problemas.
+
+---
+
+## 📖 Archivos de Documentación
+
+| Archivo | Propósito |
+|---------|-----------|
+| **SETUP_GUIDE.md** | Lista completa de características, personalización, solución de problemas |
+| **QUICK_REFERENCE.md** | Referencia rápida, tareas comunes, lista de verificación de pruebas |
+| **DEVELOPER_GUIDE.md** | Arquitectura, extensión de características, ajuste de física |
+| **IMPLEMENTATION_CHECKLIST.md** | Qué ha sido construido, próximos pasos, estado |
+
+---
+
+## 🎮 ¡Presiona Play y Diviértete!
+
+Todo está configurado y listo. Abre Godot, abre este proyecto y presiona **F5**.
+
+El prototipo es jugable inmediatamente. No se requiere configuración adicional.
+
+**¡Disfruta tu plataforma 3D!** 🚀
+
+---
+
+**Versión:** 1.0  
+**Creado:** 8 de Abril de 2026  
+**Versión de Godot:** 4.6+  
+**Estado:** ✅ Listo para Jugar
