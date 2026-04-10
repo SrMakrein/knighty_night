@@ -7,6 +7,18 @@
 [sub_resource type="CapsuleShape3D" id="1_capsule"]
 height = 1.8
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trail"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.7)
+
+[sub_resource type="SphereMesh" id="SphereMesh_trail"]
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_trail"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="CharacterBody3D" unique_id=1427111160]
 script = ExtResource("2_controller")
 
@@ -23,3 +35,20 @@ script = ExtResource("3_camera")
 [node name="Camera3D" type="Camera3D" parent="CameraController" unique_id=1125418618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 3)
 current = true
+
+[node name="TrailParticles" type="CPUParticles3D" parent="." unique_id=1210466722]
+material_override = SubResource("StandardMaterial3D_trail")
+emitting = false
+amount = 15
+lifetime = 0.56
+mesh = SubResource("SphereMesh_trail")
+direction = Vector3(0, 1, 0)
+spread = 0.8
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 1.5
+initial_velocity_max = 3.0
+damping_min = 0.8
+damping_max = 1.2
+scale_amount_min = 0.8
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_trail")

@@ -20,6 +20,7 @@ var is_grounded: bool = false
 # References
 @onready var animation_player: AnimationPlayer = $KnightModel/AnimationPlayer
 @onready var camera_controller = get_node_or_null("CameraController")
+@onready var trail_particles: CPUParticles3D = $TrailParticles
 
 # Pause menu scene
 var pause_menu_scene = preload("res://scenes/ui/PauseMenu.tscn")
@@ -185,10 +186,21 @@ func update_animation(input_magnitude: float, ground_detected: bool) -> void:
 	if anim_name in available_anims:
 		if animation_player.current_animation != anim_name:
 			animation_player.play(anim_name)
+	
+	# Controlar emisión de partículas: solo en Walk
+	if trail_particles:
+		trail_particles.emitting = (state == "walk")
 
 func get_ground_detection() -> bool:
 	"""Returns true if player is on ground"""
 	return is_on_floor()
+
+func apply_bounce(bounce_force: float) -> void:
+	"""Aplica una fuerza de rebote al jugador"""
+	print("Player bounced with force: ", bounce_force)
+	velocity.y = bounce_force
+	is_jumping = true
+
 func _open_pause_menu() -> void:
 	"""Open the pause menu"""
 	var pause_menu = pause_menu_scene.instantiate()
