@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dtj8615p0syjr"]
+
+[ext_resource type="PackedScene" uid="uid://b28hksigv3o7m" path="res://assets/models/portal.blend" id="1_utc3g"]
+[ext_resource type="Script" uid="uid://cjs2gh88rd3bn" path="res://scripts/objects/PortalController.gd" id="2_portal"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o3cfn"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_kv0xu"]
+data = PackedVector3Array(-1.0001, -1, 1, -1.0001, 1, -1, -1.0001, 1, 1, -1.0001, -1, 1, -1.0001, -1, -1, -1.0001, 1, -1, -1.0001, -1, -1, 1, 1, -1, -1.0001, 1, -1, -1.0001, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1.0001, 1, 1, 1, 1, 1, 1, -1, 1, -1.0001, -1, 1, -1.0001, 1, 1, -1.0001, -1, -1, 1, -1, 1, 1, -1, -1, -1.0001, -1, -1, -1.0001, -1, 1, 1, -1, 1, 1, 1, -1, -1.0001, 1, 1, -1.0001, 1, -1, 1, 1, -1, 1, 1, 1, -1.0001, 1, 1, -5.0776, -1, 1, -5.0776, 1, -1, -5.0776, -1, -1, -5.0776, -1, 1, -5.0776, 1, 1, -5.0776, 1, -1, -5.0776, -1, -1, -7.0775, 1, -1, -7.0775, -1, -1, -5.0776, -1, -1, -5.0776, 1, -1, -7.0775, 1, -1, -7.0775, -1, -1, -7.0775, 1, 1, -7.0775, -1, 1, -7.0775, -1, -1, -7.0775, 1, -1, -7.0775, 1, 1, -7.0775, -1, 1, -5.0776, 1, 1, -5.0776, -1, 1, -7.0775, -1, 1, -7.0775, 1, 1, -5.0776, 1, 1, -5.0776, -1, -1, -7.0775, -1, 1, -5.0776, -1, 1, -5.0776, -1, -1, -7.0775, -1, -1, -7.0775, -1, 1, -7.0775, 1, -1, -5.0776, 1, 1, -7.0775, 1, 1, -7.0775, 1, -1, -5.0776, 1, -1, -5.0776, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o3cfn"]
+size = Vector3(2.1069336, 2.2621765, 0.23388672)
+
+[node name="Node3D" type="Node3D" unique_id=1113579173]
+script = ExtResource("2_portal")
+
+[node name="portal" parent="." unique_id=1210667167 instance=ExtResource("1_utc3g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0052981377, 0.13632101, -0.49858975)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="portal/portal_up" parent_id_path=PackedInt32Array(1210667167, 949904418) index="0" unique_id=1546004017]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="portal/portal_up/StaticBody3D" unique_id=220811034]
+shape = SubResource("ConcavePolygonShape3D_o3cfn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="portal/Pilar" parent_id_path=PackedInt32Array(1210667167, 957286541) index="0" unique_id=1877570810]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="portal/Pilar/StaticBody3D" unique_id=1177555460]
+shape = SubResource("ConcavePolygonShape3D_kv0xu")
+
+[node name="DoorPhysics" type="RigidBody3D" parent="portal/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1210667167, 1696643925) index="1" unique_id=540018290]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="portal/Armature/Skeleton3D/DoorPhysics" unique_id=1316909281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.038330078, 0.92543036, 0.38305664)
+shape = SubResource("BoxShape3D_o3cfn")
+
+[editable path="portal"]
