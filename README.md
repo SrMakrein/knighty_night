@@ -1,8 +1,8 @@
 # KnightyNight - Prototipo de Plataforma 3D
 
-Un **prototipo de plataforma 3D completamente funcional** con movimiento de personaje, sistema de cámara, animaciones, coleccionables, menús interactivos y física realista.
+Un **prototipo de plataforma 3D completamente funcional** con movimiento de personaje, sistema de cámara, animaciones, coleccionables, menús interactivos, física realista y **sistema de puertas activadas por coleccionables**.
 
-**Versión:** Alpha 0.0.1  
+**Versión:** Alpha 0.0.2  
 **Estado:** ✅ Completamente jugable
 
 ## 🚀 Inicio Rápido
@@ -78,6 +78,12 @@ Un **prototipo de plataforma 3D completamente funcional** con movimiento de pers
 - Contador global en HUD
 - Gestor de coleccionables persistente
 
+✅ **Sistema de Portales Activados**
+- Puertas que se abren al recoger cierta cantidad de coleccionables
+- Animación de apertura del portal
+- El colisionador se desactiva automáticamente al terminar la animación
+- Cantidad de coleccionables configurable por puerta (por defecto 3)
+
 ✅ **HUD en Juego**
 - Contador de coleccionables
 - Interfaz limpia y legible
@@ -109,7 +115,8 @@ knighty-night/
 │   ├── autoload/
 │   │   └── CollectibleManager.gd ← Gestor global de coleccionables
 │   ├── objects/
-│   │   └── CollectibleController.gd ← Control de coleccionables
+│   │   ├── CollectibleController.gd ← Control de coleccionables
+│   │   └── PortalController.gd   ← Control de puertas activables
 │   └── ui/
 │       ├── MenuController.gd
 │       ├── PauseController.gd
@@ -133,7 +140,9 @@ knighty-night/
 │   └── models/
 │       ├── knight.blend       (personaje principal)
 │       ├── shield.blend
-│       └── sword.blend
+│       ├── sword.blend
+│       ├── portal.blend       (puerta activable)
+│       └── knight_statue.blend
 └── docs/
     ├── IMPLEMENTED_FEATURES.md  ← LO QUE ESTÁ HECHO
     ├── SETUP_GUIDE.md
@@ -239,6 +248,7 @@ Todo está preconfigurado:
 ✅ Nivel con plataformas
 ✅ Iluminación y sombras
 ✅ Sistema de coleccionables
+✅ **Sistema de puertas activadas por coleccionables** ⭐ **NUEVO**
 ✅ HUD de información
 ✅ Física y colisiones
 ✅ Detección suelo
@@ -292,8 +302,8 @@ El juego es completamente jugable de inmediato. No se requiere configuración ad
 
 ---
 
-**Versión:** Alpha 0.0.1  
-**Creado:** 9 de Abril de 2026  
+**Versión:** Alpha 0.0.2  
+**Creado:** 10 de Abril de 2026  
 **Godot:** 4.6+  
 **Estado:** ✅ Completamente Funcional**¡Solo presiona Play!**
 
